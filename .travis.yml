@@ -1,7 +1,7 @@
 language: python
 python:
   - 2.7
-  - 3.7
+  - 3.6
 arch:
   - amd64
   - arm64
@@ -45,7 +45,6 @@ before_script:
      if [[ "$TRAVIS_PYTHON_VERSION" == "2.7" ]]; then
        sudo chmod -R 777 $HOME/miniconda/envs/pylibtiff-dev/lib/python2.7/site-packages;
        sudo rm /usr/bin/lsb_release;
-     fi
      else
        sudo chmod -R 777 $HOME/miniconda/envs/pylibtiff-dev/lib/python3.7/site-packages;
        sudo rm /usr/bin/lsb_release;
