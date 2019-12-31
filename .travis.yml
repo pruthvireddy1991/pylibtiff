@@ -6,7 +6,7 @@ arch:
   - amd64
   - arm64
 before_install:
-  - sudo apt-get install -y git wget
+  - sudo apt-get install -y git wget libtiff-dev
 env:
   global:
     - SUDO=""
