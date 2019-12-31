@@ -34,9 +34,9 @@ install:
   - $SUDO conda update --quiet --yes conda
   - $SUDO conda info -a
   - $SUDO conda env create --quiet --name pylibtiff-dev --file .conda/environment.yml
-  - conda activate pylibtiff-dev
+  - $SUDO conda activate pylibtiff-dev
   - if [[ "$TRAVIS_PYTHON_VERSION" == "2.7" ]]; then
-      conda install --yes --quiet python=2.7 -c conda-forge;
+      $SUDO conda install --yes --quiet python=2.7 -c conda-forge;
     fi
   - export PREFIX=$CONDA_PREFIX
 
