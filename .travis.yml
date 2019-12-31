@@ -50,7 +50,6 @@ before_script:
        sudo rm /usr/bin/lsb_release;
      fi
     fi
-  - python --version
   - python setup.py develop
 
 script:
