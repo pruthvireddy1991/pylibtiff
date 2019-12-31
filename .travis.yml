@@ -16,7 +16,6 @@ install:
       chmod +x archiconda.sh;
       bash archiconda.sh -b -p $HOME/miniconda;
       SUDO=sudo;
-      $SUDO cp -r $HOME/miniconda/bin/* /usr/bin/
     else
       if [[ "$TRAVIS_PYTHON_VERSION" == "2.7" ]]; then
         wget https://repo.continuum.io/miniconda/Miniconda2-latest-Linux-x86_64.sh -O miniconda.sh;
@@ -29,6 +28,7 @@ install:
   - export MINICONDA=$HOME/miniconda
   - hash -r
   - source $MINICONDA/etc/profile.d/conda.sh
+  - $SUDO cp -r $HOME/miniconda/bin/* /usr/bin/
   - $SUDO conda config --set always_yes yes --set changeps1 no
   - $SUDO chmod -R 777 $HOME/miniconda/*
   - $SUDO conda update --quiet --yes conda
