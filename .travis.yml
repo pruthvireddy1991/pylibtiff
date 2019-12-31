@@ -29,7 +29,7 @@ install:
   - hash -r
   - source $MINICONDA/etc/profile.d/conda.sh
   - conda config --set always_yes yes --set changeps1 no
-  - sudo chmod -R 777 /home/travis/miniconda/envs/testenv
+  - sudo chmod -R 777 $HOME/miniconda/*
   - conda update --quiet --yes conda
   - conda info -a
   - conda env create --quiet --name pylibtiff-dev --file .conda/environment.yml
