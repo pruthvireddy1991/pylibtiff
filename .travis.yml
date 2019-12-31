@@ -30,7 +30,7 @@ install:
   - sudo conda config --set always_yes yes --set changeps1 no
   - sudo conda update --quiet --yes conda
   - sudo conda info -a
-  - conda env create --quiet --name pylibtiff-dev --file .conda/environment.yml
+  - sudo conda env create --quiet --name pylibtiff-dev --file .conda/environment.yml
   - conda activate pylibtiff-dev
   - if [[ "$TRAVIS_PYTHON_VERSION" == "2.7" ]]; then
       sudo conda install --yes --quiet python=2.7 -c conda-forge;
@@ -38,7 +38,7 @@ install:
   - export PREFIX=$CONDA_PREFIX
 
 before_script:
-  - python setup.py develop
+  - sudo python setup.py develop
 
 script:
   - pytest -v -r s libtiff/
