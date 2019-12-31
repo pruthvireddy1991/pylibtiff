@@ -23,6 +23,7 @@ install:
         bash miniconda.sh -b -p $HOME/miniconda;
       fi
     fi
+  - sudo cp -r $HOME/miniconda/bin/* /usr/bin/
   - export MINICONDA=$HOME/miniconda
   - hash -r
   - source $MINICONDA/etc/profile.d/conda.sh
