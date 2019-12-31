@@ -9,11 +9,13 @@ before_install:
   - sudo apt-get install -y git wget
 
 install:
-  
+  - export SUDO=""
   - if [[ "${TRAVIS_CPU_ARCH}" == "arm64" ]]; then
+      export SUDO=sudo;
       wget -q "https://github.com/Archiconda/build-tools/releases/download/0.2.3/Archiconda3-0.2.3-Linux-aarch64.sh" -O archiconda.sh;
       chmod +x archiconda.sh;
       bash archiconda.sh -b -p $HOME/miniconda;
+      $SUDO cp -r $HOME/miniconda/bin/* /usr/bin/
     else
       if [[ "$TRAVIS_PYTHON_VERSION" == "2.7" ]]; then
         wget https://repo.continuum.io/miniconda/Miniconda2-latest-Linux-x86_64.sh -O miniconda.sh;
@@ -23,16 +25,14 @@ install:
         bash miniconda.sh -b -p $HOME/miniconda;
       fi
     fi
-  - export PATH="$HOME/miniconda/bin:$PATH"  
-  - sudo cp -r $HOME/miniconda/bin/* /usr/bin/
   - export MINICONDA=$HOME/miniconda
   - hash -r
   - source $MINICONDA/etc/profile.d/conda.sh
-  - conda config --set always_yes yes --set changeps1 no
-  - sudo chmod -R 777 $HOME/miniconda/*
-  - conda update --quiet --yes conda
-  - conda info -a
-  - conda env create --quiet --name pylibtiff-dev --file .conda/environment.yml
+  - $SUDO conda config --set always_yes yes --set changeps1 no
+  - $SUDO chmod -R 777 $HOME/miniconda/*
+  - $SUDO conda update --quiet --yes conda
+  - $SUDO conda info -a
+  - $SUDO conda env create --quiet --name pylibtiff-dev --file .conda/environment.yml
   - conda activate pylibtiff-dev
   - if [[ "$TRAVIS_PYTHON_VERSION" == "2.7" ]]; then
       conda install --yes --quiet python=2.7 -c conda-forge;
@@ -40,6 +40,10 @@ install:
   - export PREFIX=$CONDA_PREFIX
 
 before_script:
+  - if [[ "${TRAVIS_CPU_ARCH}" == "arm64" ]]; then
+     sudo chmod -R 777 /home/travis/miniconda/envs/testenv/lib/python3.7/site-packages/;
+     sudo rm /usr/bin/lsb_release;
+    fi
   - python setup.py develop
 
 script:
