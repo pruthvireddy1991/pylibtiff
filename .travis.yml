@@ -26,13 +26,13 @@ install:
   - export MINICONDA=$HOME/miniconda
   - hash -r
   - source $MINICONDA/etc/profile.d/conda.sh
-  - conda config --set always_yes yes --set changeps1 no
-  - conda update --quiet --yes conda
-  - conda info -a
-  - conda env create --quiet --name pylibtiff-dev --file .conda/environment.yml
-  - conda activate pylibtiff-dev
+  - sudo conda config --set always_yes yes --set changeps1 no
+  - sudo conda update --quiet --yes conda
+  - sudo conda info -a
+  - sudo conda env create --quiet --name pylibtiff-dev --file .conda/environment.yml
+  - sudo conda activate pylibtiff-dev
   - if [[ "$TRAVIS_PYTHON_VERSION" == "2.7" ]]; then
-      conda install --yes --quiet python=2.7 -c conda-forge;
+      sudo conda install --yes --quiet python=2.7 -c conda-forge;
     fi
   - export PREFIX=$CONDA_PREFIX
 
