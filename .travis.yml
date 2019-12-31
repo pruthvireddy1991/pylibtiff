@@ -23,22 +23,24 @@ install:
         bash miniconda.sh -b -p $HOME/miniconda;
       fi
     fi
+  - export PATH="$HOME/miniconda/bin:$PATH"  
   - sudo cp -r $HOME/miniconda/bin/* /usr/bin/
+  - sudo chmod -R 777 /home/travis/miniconda/envs/testenv/lib/python3.7/site-packages/
   - export MINICONDA=$HOME/miniconda
   - hash -r
   - source $MINICONDA/etc/profile.d/conda.sh
-  - sudo conda config --set always_yes yes --set changeps1 no
-  - sudo conda update --quiet --yes conda
-  - sudo conda info -a
-  - sudo conda env create --quiet --name pylibtiff-dev --file .conda/environment.yml
+  - conda config --set always_yes yes --set changeps1 no
+  - conda update --quiet --yes conda
+  - conda info -a
+  - conda env create --quiet --name pylibtiff-dev --file .conda/environment.yml
   - conda activate pylibtiff-dev
   - if [[ "$TRAVIS_PYTHON_VERSION" == "2.7" ]]; then
-      sudo conda install --yes --quiet python=2.7 -c conda-forge;
+      conda install --yes --quiet python=2.7 -c conda-forge;
     fi
   - export PREFIX=$CONDA_PREFIX
 
 before_script:
-  - sudo python setup.py develop
+  - python setup.py develop
 
 script:
   - pytest -v -r s libtiff/
