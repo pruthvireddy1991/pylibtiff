@@ -7,9 +7,10 @@ arch:
   - arm64
 before_install:
   - sudo apt-get install -y git wget
-
+env:
+  global:
+    - SUDO=""
 install:
-  - SUDO = ""
   - if [[ "${TRAVIS_CPU_ARCH}" == "arm64" ]]; then
       wget -q "https://github.com/Archiconda/build-tools/releases/download/0.2.3/Archiconda3-0.2.3-Linux-aarch64.sh" -O archiconda.sh;
       chmod +x archiconda.sh;
