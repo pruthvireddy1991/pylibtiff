@@ -10,7 +10,7 @@ before_install:
 
 install:
   
-  - if[["$TRAVIS_CPU_ARCH"=="arm64"]]; then
+  - if [["$TRAVIS_CPU_ARCH" == "arm64"]]; then
       wget -q "https://github.com/Archiconda/build-tools/releases/download/0.2.3/Archiconda3-0.2.3-Linux-aarch64.sh" -O archiconda.sh;
       chmod +x archiconda.sh;
       bash archiconda.sh -b -p $HOME/miniconda;
