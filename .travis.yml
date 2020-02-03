@@ -46,8 +46,7 @@ before_script:
        sudo chmod -R 777 $HOME/miniconda/envs/pylibtiff-dev/lib/python2.7/site-packages;
        sudo rm /usr/bin/lsb_release;
      else
-       sudo chmod -R 777 $HOME/miniconda/envs/pylibtiff-dev/lib/python3.7/site-packages;
-       sudo rm /usr/bin/lsb_release;
+       sudo chmod -R 777 $HOME/miniconda/envs/pylibtiff-dev/lib/python3.*/site-packages;
      fi
     fi
   - python setup.py develop
